@@ -1,16 +1,16 @@
+import { Form } from "./Form/Form";
+import { ContactsList } from "./ContactsList/ContactsList";
+import { SearchInput } from "./SearchInput/SearchInput";
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <h1>Phonebook</h1>
+      <Form/>
+      <h2>Contacts</h2>
+      <SearchInput/>
+      <ContactsList/>
+    </>
   );
-};
+}
+  
