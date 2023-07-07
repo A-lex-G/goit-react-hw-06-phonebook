@@ -1,7 +1,7 @@
-import { nanoid } from "nanoid"
-import css from "./SearchInput.module.css"
-import { useDispatch, useSelector } from "react-redux"
-import { updFilter } from "redux/actions"
+import { nanoid } from "nanoid";
+import css from "./SearchInput.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { updFilter } from "redux/filterSlice";
 
 export const SearchInput = () => {
     const dispatch = useDispatch();

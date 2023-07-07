@@ -2,7 +2,7 @@ import React from "react";
 import css from "./ContactsList.module.css";
 // import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
-import { delContact } from "redux/actions";
+import { delContact } from "redux/contactsSlice";
 
 const getVisibleContacts = (contacts, filter) => {
     if (contacts.length > 0) {
