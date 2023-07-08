@@ -1,31 +1,20 @@
-import { contactsInitState } from "./constants";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const contactsReducer = (state = contactsInitState, action) => {
-    switch (action.type) {
-        case "contact/AddContact":
-            if (state.map(contact => contact.name).includes(action.payload.name)) {
-                window.alert(`${action.payload} is already in contacts`);
-                return;
-            } else {
-                return [...state, action.payload];
-            };
-        case "contact/DelContact":
+const contactsSlice = createSlice({
+    name: 'contacts',
+    initialState: [],
+    reducers: {
+        addContact(state, action) {
+            state.push(action.payload);
+        },
+        delContact(state, action) {
             return state.filter(contact => contact.id !== action.payload);
-        default:
-            return state;
+        }
     }
-};
+});
 
-export const addContact = value => {
-    return {
-        type: "contact/AddContact",
-        payload: value,
-    }
-};
+export const contactsReducer = contactsSlice.reducer;
 
-export const delContact = idValue => {
-    return {
-        type: "contact/DelContact",
-        payload: idValue,
-    }
-};
+export const { addContact, delContact } = contactsSlice.actions;
+
+export const getContactsArr = state => state.contacts;

@@ -1,25 +1,39 @@
 import css from "./Form.module.css";
 import { nanoid } from "nanoid";
-import { useDispatch } from "react-redux";
-import { addContact } from "redux/contactsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact, getContactsArr } from "redux/contactsSlice";
 
 export const Form = () => {
     
     const dispatch = useDispatch();
 
+    const contacts = useSelector(getContactsArr);
+
     const nameInputId = nanoid();
+
     const numberInputId = nanoid();
 
     const handleSubmitForm = (e) => {
+
         e.preventDefault();
 
         const form = e.target;
+        
+        const { value } = form.elements.name;
+
+        if ((contacts.map(contact => contact.name)).includes(value)) {
+            window.alert(`${value} is already in contacts`)
+            return
+        };
+
         const contactData = {
-            [form.elements.name.name]: form.elements.name.value,
+            [form.elements.name.name]: value,
             [form.elements.number.name]: form.elements.number.value,
             id: nanoid(),
-        }         
+        }        
+        
         dispatch(addContact(contactData));
+
         form.reset();
     };
 
@@ -66,4 +80,3 @@ export const Form = () => {
         </>
     );
 }
-
